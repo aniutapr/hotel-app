@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { ReservationService } from '../reservation/reservation.service';
 @Component({
   selector: 'app-reservation-list',
   standalone: true,
@@ -8,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './reservation-list.component.scss'
 })
 export class ReservationListComponent {
+  constructor(
+    private service: ReservationService){}
 
 }

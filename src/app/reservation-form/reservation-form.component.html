@@ -1,1 +1,35 @@
-<p>reservation-form works!</p>
+<h1>Reservation form</h1>
+<form [formGroup]="resForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label>Check in date</label>
+        <input type="date" formControlName="checkInDate">
+        <div class="valid-mess" *ngIf="resForm.get('checkInDate')?.invalid && resForm.get('checkInDate')?.touched">
+        Check-in date is required</div>
+    </div>
+    <div>
+        <label>Check out date</label>
+        <input type="date" formControlName="checkOutDate">
+        <div class="valid-mess" *ngIf="resForm.get('checkOutDate')?.invalid && resForm.get('checkOutDate')?.touched">
+            Check-out date is required</div>
+    </div>
+    
+    <div>
+        <label>Guest name</label>
+        <input type="text" formControlName="guestName">
+        <div class="valid-mess" *ngIf="resForm.get('guestName')?.invalid && resForm.get('guestName')?.touched">
+            Guest name is required</div>
+    </div>
+    <div>
+        <label>Guest email</label>
+        <input type="email" formControlName="guestEmail">
+        <div class="valid-mess" *ngIf="resForm.get('guestEmail')?.invalid && resForm.get('guestEmail')?.touched">
+            Guest email is required</div>
+    </div>
+    <div>
+        <label>Room number</label>
+        <input type="number" formControlName="roomNumber">
+         <div class="valid-mess" *ngIf="resForm.get('roomNumber')?.invalid && resForm.get('roomNumber')?.touched">
+        Room number is required</div>
+    </div>
+    <button type="submit" [disabled]="resForm.invalid">Submit</button>
+</form>
