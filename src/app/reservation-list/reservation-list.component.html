@@ -1,1 +1,18 @@
-<p>reservation-list works!</p>
+<app-home></app-home>
+<h1>Reservation list</h1>
+<ul *ngIf="reservations.length; else noReservation">
+    <li *ngFor="let res of reservations">
+        Id: {{res.id}}<br>
+        Room: {{res.roomNumber}}<br>
+        Guest: {{res.guestName}} <br>
+        Email: {{res.guestEmail}} <br>
+        Check-in: {{res.checkInDate}} <br>
+        Check-out: {{res.checkOutDate}} <br>
+        <button (click)="deleteRes(res.id)" class="delete-b">Delete</button>
+        <button (click)="editRes(res.id)" [routerLink]="['/edit', res.id]" class="edit-b">Edit</button>
+
+    </li>    
+</ul>
+<ng-template #noReservation>
+    <p class="noAvailable">No reservations available</p>
+</ng-template>
