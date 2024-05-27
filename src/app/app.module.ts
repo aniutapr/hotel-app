@@ -5,6 +5,7 @@ import { HomeModule } from './home/home.module';
 import { ReservationModule } from './reservation/reservation.module';
 import { Router } from 'express';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [],
   imports: [
@@ -12,7 +13,8 @@ import { RouterModule } from '@angular/router';
     AppComponent, 
     HomeModule, 
     ReservationModule,    
-    RouterModule
+    RouterModule, 
+    HttpClientModule
   ]
 })
 export class AppModule { }

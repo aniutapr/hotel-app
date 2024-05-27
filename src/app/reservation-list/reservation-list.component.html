@@ -10,7 +10,6 @@
         Check-out: {{res.checkOutDate}} <br>
         <button (click)="deleteRes(res.id)" class="delete-b">Delete</button>
         <button (click)="editRes(res.id)" [routerLink]="['/edit', res.id]" class="edit-b">Edit</button>
-
     </li>    
 </ul>
 <ng-template #noReservation>

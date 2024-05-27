@@ -5,10 +5,11 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HomeModule } from '../home/home.module';
 import { ReservationFormComponent } from '../reservation-form/reservation-form.component';
+import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-reservation-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, HomeModule, ReservationFormComponent],
+  imports: [CommonModule, RouterModule, HomeModule, ReservationFormComponent, HttpClientModule],
   templateUrl: './reservation-list.component.html',
   styleUrl: './reservation-list.component.scss'
 })
@@ -20,7 +21,9 @@ export class ReservationListComponent implements OnInit {
     private service: ReservationService){}
 
   ngOnInit(): void {
-    this.reservations=this.service.getAllReservations();
+    this.service.getAllReservations().subscribe((data: Reservation[]) => {
+      this.reservations = data;
+    });
     }
   public deleteRes(id:string){
     this.service.deleteReservation(id);

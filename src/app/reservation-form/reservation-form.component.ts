@@ -5,11 +5,12 @@ import { ReservationService } from '../reservation/reservation.service';
 import { Reservation } from '../models/reservation';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HomeModule } from '../home/home.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-reservation-form',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf, HomeModule],
+  imports: [ReactiveFormsModule, NgIf, HomeModule, HttpClientModule],
   templateUrl: './reservation-form.component.html',
   styleUrl: './reservation-form.component.scss'
 })
@@ -36,7 +37,10 @@ export class ReservationFormComponent implements OnInit{
     let id=this.activatedRoute.snapshot.paramMap.get('id')
 
     if(id){
-      let reservation=this.service.getReservationsById(id);
+      let reservation=this.service.getReservationsById(id).subscribe(reservation=>{
+        if(reservation)
+          this.resForm.patchValue(reservation);
+      });
 
       if(reservation)
         this.resForm.patchValue(reservation)
